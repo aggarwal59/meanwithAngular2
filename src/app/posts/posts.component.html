@@ -1,0 +1,41 @@
+<div class="container">
+  <div class="row" *ngFor="let post of posts">
+    <div class="card card-block">
+      <h4 class="card-title">{{ post.title }}</h4>
+      <p class="card-text">{{post.body}}</p>
+      <a href="#" class="card-link">Card link</a>
+      <a href="#" class="card-link">Another link</a>
+    </div>
+  </div>
+  <button class="btn-primary" (click)="hideForm = false">Add Data</button>
+  Title <input type="text" [(ngModel)]="data.title" [hidden]="hideForm">
+  Body <input type="text" [(ngModel)]="data.body" [hidden]="hideForm">
+  <button class="btn-primary" (click) = 'addPostData(data)' [hidden]="hideForm">Submit</button>
+
+  <div class="form-group">
+   <label for="single">single</label>
+   <!--<input type="file" class="form-control" name="single" ng2FileSelect [uploader]="uploader" />  
+                                   -->
+    <input type="file" class="form-control" name="single" (change)="getFile($event)" />
+</div>
+
+<button type="button" class="btn btn-success btn-s"
+   (click)="uploadFile()" [disabled]="uploadStatus">
+    <span class="glyphicon glyphicon-upload"></span> Upload all
+</button><br />
+
+<iframe [src] = "photoData" [hidden]="!photoData"></iframe>
+
+<div class="form-group">
+   <label for="single"></label>
+   <!--<input type="file" class="form-control" name="single" ng2FileSelect [uploader]="uploader" />  
+                                   -->
+    <input type="file" class="form-control" name="single" (change)="getExcelFile($event)" />
+    <button type="button" class="btn btn-success btn-s"
+   (click)="uploadExcelFile()" [disabled]="uploadExcelStatus">
+    <span class="glyphicon glyphicon-upload"></span> Upload Excel
+</button><br />
+</div>
+<!--var file =$scope.csvFile;
+	        -->
+</div>
